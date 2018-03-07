@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ScaleImageViewActivity"></activity>
-        <!--<activity android:name=".MainActivity"></activity>-->
+        <!--<activity android:name=".PinchActivity" />-->
+        <activity android:name=".ScaleImageViewActivity" />
+        <activity android:name=".PinchActivity"></activity>
     </application>
 
 </manifest>

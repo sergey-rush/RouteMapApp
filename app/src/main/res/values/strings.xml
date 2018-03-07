@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">PathViewAnimation</string>
+    <string name="app_name">RouteMapApp</string>
+    <string name="title_activity_pinch">PinchActivity</string>
 </resources>

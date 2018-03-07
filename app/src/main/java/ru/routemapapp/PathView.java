@@ -1,5 +1,6 @@
 package ru.routemapapp;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,6 +17,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * Created by CanvasView on 04.03.2018.
@@ -33,8 +35,6 @@ public class PathView extends View {
     private Paint mRoutePaint;
     private float mX, mY;
     private static final float TOLERANCE = 5;
-
-
 
     public PathView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -59,31 +59,81 @@ public class PathView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-
-        // your Canvas will draw onto the defined Bitmap
         mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
     }
 
-
     public void setRoutePath(){
 
-
         mRoutePath = new Path();
-        mRoutePath.moveTo(50, 50);
-        mRoutePath.lineTo(50, 500);
-        mRoutePath.lineTo(200, 500);
-        mRoutePath.lineTo(200, 300);
-        mRoutePath.lineTo(350, 300);
+        mRoutePath.moveTo(220, 620);
+        mRoutePath.lineTo(220, 595);
+        mRoutePath.lineTo(100, 595);
+        mRoutePath.lineTo(100, 495);
+        mRoutePath.lineTo(350, 495);
+        mRoutePath.lineTo(350, 450);
+        mRoutePath.lineTo(100, 450);
+        mRoutePath.lineTo(100, 315);
+        mRoutePath.lineTo(190, 315);
+        mRoutePath.lineTo(190, 270);
+        mRoutePath.lineTo(100, 270);
+        mRoutePath.lineTo(100, 200);
+        mRoutePath.lineTo(100, 150);
+        mRoutePath.lineTo(100, 55);
+        mRoutePath.lineTo(320, 55);
+        mRoutePath.lineTo(320, 270);
+        mRoutePath.lineTo(475, 270);
+        mRoutePath.lineTo(475, 290);
+        mRoutePath.lineTo(530, 290);
+        mRoutePath.lineTo(530, 540);
+        mRoutePath.lineTo(585, 540);
+        mRoutePath.lineTo(585, 290);
+        mRoutePath.lineTo(585, 55);
+        mRoutePath.lineTo(770, 55);
+        mRoutePath.lineTo(770, 560);
+        mRoutePath.lineTo(890, 560);
+        mRoutePath.lineTo(890, 290);
+        mRoutePath.lineTo(940, 290);
+        mRoutePath.lineTo(940, 160);
+        mRoutePath.lineTo(1110, 160);
+        mRoutePath.lineTo(1110, 350);
+        mRoutePath.lineTo(960, 350);
+        mRoutePath.lineTo(960, 380);
+        mRoutePath.lineTo(1110, 380);
+        mRoutePath.lineTo(1110, 450);
+        mRoutePath.lineTo(960, 450);
+        mRoutePath.lineTo(960, 480);
+        mRoutePath.lineTo(1110, 480);
+        mRoutePath.lineTo(1110, 560);
+        mRoutePath.lineTo(940, 560);
+        mRoutePath.lineTo(940, 620);
 
-        // Measure the path
         PathMeasure measure = new PathMeasure(mRoutePath, false);
         mPathLength = measure.getLength();
 
-        //float[] intervals = new float[]{length, length};
-
         ObjectAnimator animator = ObjectAnimator.ofFloat(PathView.this, "phase", 1.0f, 0.0f);
-        animator.setDuration(3000);
+        animator.setDuration(8000);
+        animator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                Toast.makeText(context, "Маршрут построен", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
         animator.start();
     }
 
@@ -109,7 +159,6 @@ public class PathView extends View {
         // draw the mPenPath with the mPenPaint on the canvas when onDraw
         canvas.drawPath(mPenPath, mPenPaint);
         canvas.drawPath(mRoutePath, mRoutePaint);
-
     }
 
     // when ACTION_DOWN start touch according to the x,y values

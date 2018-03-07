@@ -46,7 +46,7 @@ public class ScaleImageView extends AppCompatImageView implements OnTouchListene
     private int innerWidth;
     private int innerHeight;
 
-    private float scale;
+    //private float scale;
     private float minScale;
 
     private float prevDistance;
@@ -124,7 +124,7 @@ public class ScaleImageView extends AppCompatImageView implements OnTouchListene
 
         matrix.reset();
         int r_norm = r - l;
-        scale = (float) r_norm / (float) innerWidth;
+        float scale = (float) r_norm / (float) innerWidth;
 
         int paddingHeight = 0;
         int paddingWidth = 0;
